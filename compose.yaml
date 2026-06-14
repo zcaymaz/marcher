@@ -1,0 +1,79 @@
+# Canlı kurulum (proje kökünde):
+#   docker compose up -d --build
+#
+# İsteğe bağlı: cp .env.example .env ile değerleri özelleştirin (.env varsa önceliklidir)
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-marcher}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marcher_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-marcher_coffee}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-marcher} -d ${POSTGRES_DB:-marcher_coffee}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env.example
+    environment:
+      NODE_ENV: production
+      PORT: 5050
+      DATABASE_URL: postgresql://${POSTGRES_USER:-marcher}:${POSTGRES_PASSWORD:-marcher_secret}@postgres:5432/${POSTGRES_DB:-marcher_coffee}?schema=public
+      JWT_SECRET: ${JWT_SECRET:-change-me-run-openssl-rand-base64-64}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://marchercoffee.com}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-.marchercoffee.com}
+      UPLOAD_DIR: uploads
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@marchercoffee.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Marcher2026!}
+      ADMIN_NAME: ${ADMIN_NAME:-Marcher Admin}
+    ports:
+      - '127.0.0.1:5050:5050'
+    volumes:
+      - uploads_data:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - internal
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1:5050/api/health || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-https://servis.marchercoffee.com/api}
+        VITE_SITE_URL: ${VITE_SITE_URL:-https://marchercoffee.com}
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:5055:80'
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - internal
+
+volumes:
+  postgres_data:
+  uploads_data:
+
+networks:
+  internal:
+    driver: bridge

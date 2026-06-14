@@ -10,9 +10,23 @@
 Sunucuda proje kökünde:
 
 ```bash
-git clone <repo-url> /var/www/marcher
+git clone https://github.com/zcaymaz/marcher.git /var/www/marcher
 cd /var/www/marcher
+ls docker-compose.yml compose.yaml .env.example   # dosyalar görünmeli
 docker compose up -d --build
+```
+
+> **"no configuration file provided: not found"** → `docker-compose.yml` sunucuda yok demektir.
+> Genelde sadece `backend/` ve `frontend/` kopyalanmış, proje kökü eksiktir.
+> Çözüm: yukarıdaki gibi tam `git clone` veya `git pull` yapın.
+
+Alternatif (dosya yolunu açıkça verin):
+
+```bash
+cd /var/www/marcher
+docker compose -f docker-compose.yml up -d --build
+# veya eski binary:
+docker-compose -f docker-compose.yml up -d --build
 ```
 
 Bu komut otomatik olarak:
