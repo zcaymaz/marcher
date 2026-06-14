@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "menu": "Menü",
+    "blog": "Blog",
+    "references": "Referanslar",
+    "franchise": "Franchise",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_cta": "Menüyü Keşfet",
+    "featured": "Öne Çıkanlar",
+    "blog_title": "Güncel Yazılar",
+    "reviews_title": "Google Yorumları",
+    "references_title": "Referanslarımız",
+    "view_all": "Tümünü Gör"
+  },
+  "menu": {
+    "title": "QR Menü",
+    "all": "Tümü",
+    "coffee": "Kahve",
+    "croissant": "Kruvasan",
+    "pastry": "Hamur İşi",
+    "food": "Yemek",
+    "cold": "Soğuk İçecek",
+    "price": "Fiyat",
+    "allergens": "Alerjenler",
+    "details": "Detaylar",
+    "unavailable": "Mevcut değil"
+  },
+  "blog": {
+    "title": "Blog",
+    "read_more": "Devamını Oku"
+  },
+  "franchise": {
+    "title": "Franchise & Kurumsal",
+    "subtitle": "Marcher Coffee ailesine katılmak ister misiniz?",
+    "name": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "city": "Şehir",
+    "message": "Mesajınız",
+    "submit": "Gönder",
+    "success": "Başvurunuz alındı. En kısa sürede dönüş yapacağız."
+  },
+  "contact": {
+    "title": "İletişim",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "subtitle": "Paris konseptli kahve ve kruvasan deneyimi"
+  },
+  "references": {
+    "title": "Referanslar",
+    "brands": "Markalar",
+    "products": "Ürünler"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "back": "Geri",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "add": "Ekle",
+    "search": "Ara"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "menu": "Menü",
+    "blog": "Blog",
+    "campaigns": "Kampanyalar",
+    "references": "Referanslar",
+    "reviews": "Yorumlar",
+    "franchise": "Franchise Başvuruları",
+    "settings": "Site Ayarları",
+    "users": "Kullanıcılar",
+    "logout": "Çıkış",
+    "login": "Giriş Yap",
+    "email": "E-posta",
+    "password": "Şifre"
+  },
+  "whatsapp": {
+    "message": "Merhaba, Marcher Coffee hakkında bilgi almak istiyorum."
+  }
+}

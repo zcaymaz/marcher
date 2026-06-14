@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "menu": "Menu",
+    "blog": "Blog",
+    "references": "Références",
+    "franchise": "Franchise",
+    "about": "À Propos",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_cta": "Découvrir le Menu",
+    "featured": "À la Une",
+    "blog_title": "Articles Récents",
+    "reviews_title": "Avis Google",
+    "references_title": "Nos Références",
+    "view_all": "Voir Tout"
+  },
+  "menu": {
+    "title": "Menu QR",
+    "all": "Tout",
+    "coffee": "Café",
+    "croissant": "Croissant",
+    "pastry": "Viennoiserie",
+    "food": "Nourriture",
+    "cold": "Boissons Froides",
+    "price": "Prix",
+    "allergens": "Allergènes",
+    "details": "Détails",
+    "unavailable": "Indisponible"
+  },
+  "blog": {
+    "title": "Blog",
+    "read_more": "Lire la Suite"
+  },
+  "franchise": {
+    "title": "Franchise & Entreprise",
+    "subtitle": "Souhaitez-vous rejoindre la famille Marcher Coffee ?",
+    "name": "Nom Complet",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "city": "Ville",
+    "message": "Votre Message",
+    "submit": "Envoyer",
+    "success": "Votre candidature a été reçue. Nous vous répondrons bientôt."
+  },
+  "contact": {
+    "title": "Contact",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "E-mail"
+  },
+  "about": {
+    "title": "À Propos",
+    "subtitle": "Expérience café et croissant au concept parisien"
+  },
+  "references": {
+    "title": "Références",
+    "brands": "Marques",
+    "products": "Produits"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "back": "Retour",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "search": "Rechercher"
+  },
+  "admin": {
+    "dashboard": "Tableau de Bord",
+    "menu": "Menu",
+    "blog": "Blog",
+    "campaigns": "Campagnes",
+    "references": "Références",
+    "reviews": "Avis",
+    "franchise": "Candidatures Franchise",
+    "settings": "Paramètres du Site",
+    "users": "Utilisateurs",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "email": "E-mail",
+    "password": "Mot de passe"
+  },
+  "whatsapp": {
+    "message": "Bonjour, je souhaite obtenir des informations sur Marcher Coffee."
+  }
+}

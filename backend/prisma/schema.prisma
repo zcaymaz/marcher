@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MenuItem {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  category    String
+  price       Float
+  oldPrice    Float?
+  image       String?
+  images      String[]
+  name        Json
+  description Json
+  details     Json?
+  tags        String[]
+  allergens   String[]
+  isFeatured  Boolean  @default(false)
+  isAvailable Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  category  String
+  date      DateTime @default(now())
+  image     String?
+  title     Json
+  excerpt   Json
+  content   Json
+  metaDesc  Json?
+  keywords  String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum CampaignPlacement {
+  HOME_HERO
+  HOME_BANNER
+  MENU_BANNER
+}
+
+model Campaign {
+  id        String            @id @default(cuid())
+  title     Json
+  subtitle  Json?
+  ctaText   Json?
+  ctaLink   String?
+  image     String?
+  isActive  Boolean           @default(true)
+  startDate DateTime?
+  endDate   DateTime?
+  sortOrder Int               @default(0)
+  placement CampaignPlacement @default(HOME_HERO)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+enum ReferenceType {
+  BRAND
+  PRODUCT
+}
+
+model Reference {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  type        ReferenceType @default(BRAND)
+  name        Json
+  image       String?
+  logo        String?
+  description Json?
+  sortOrder   Int           @default(0)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+enum ReviewSource {
+  MANUAL
+  GOOGLE
+}
+
+model Review {
+  id              String       @id @default(cuid())
+  authorName      String
+  authorPhoto     String?
+  rating          Int          @default(5)
+  text            Json
+  source          ReviewSource @default(MANUAL)
+  googleReviewId  String?
+  googleSyncedAt  DateTime?
+  isVisible       Boolean      @default(true)
+  sortOrder       Int          @default(0)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+enum FranchiseStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
+
+model FranchiseInquiry {
+  id        String          @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  city      String?
+  message   String
+  status    FranchiseStatus @default(NEW)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model SiteSettings {
+  id                 String   @id @default("default")
+  whatsappNumber     String   @default("905000000000")
+  phone              String?
+  email              String?
+  address            Json?
+  googleMapsEmbedUrl String?
+  googlePlaceId      String?
+  socialLinks        Json?
+  updatedAt          DateTime @updatedAt
+}

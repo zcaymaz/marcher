@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "blog": "Blog",
+    "references": "References",
+    "franchise": "Franchise",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero_cta": "Explore Menu",
+    "featured": "Featured",
+    "blog_title": "Latest Posts",
+    "reviews_title": "Google Reviews",
+    "references_title": "Our References",
+    "view_all": "View All"
+  },
+  "menu": {
+    "title": "QR Menu",
+    "all": "All",
+    "coffee": "Coffee",
+    "croissant": "Croissant",
+    "pastry": "Pastry",
+    "food": "Food",
+    "cold": "Cold Drinks",
+    "price": "Price",
+    "allergens": "Allergens",
+    "details": "Details",
+    "unavailable": "Unavailable"
+  },
+  "blog": {
+    "title": "Blog",
+    "read_more": "Read More"
+  },
+  "franchise": {
+    "title": "Franchise & Corporate",
+    "subtitle": "Would you like to join the Marcher Coffee family?",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone",
+    "city": "City",
+    "message": "Your Message",
+    "submit": "Submit",
+    "success": "Your application has been received. We will get back to you soon."
+  },
+  "contact": {
+    "title": "Contact",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Paris concept coffee and croissant experience"
+  },
+  "references": {
+    "title": "References",
+    "brands": "Brands",
+    "products": "Products"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "menu": "Menu",
+    "blog": "Blog",
+    "campaigns": "Campaigns",
+    "references": "References",
+    "reviews": "Reviews",
+    "franchise": "Franchise Inquiries",
+    "settings": "Site Settings",
+    "users": "Users",
+    "logout": "Logout",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password"
+  },
+  "whatsapp": {
+    "message": "Hello, I would like to get information about Marcher Coffee."
+  }
+}
