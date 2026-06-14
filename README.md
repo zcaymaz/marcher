@@ -5,60 +5,15 @@
 | **Canlı** | https://marchercoffee.com | https://servis.marchercoffee.com |
 | **Dev** | http://localhost:5055 | http://localhost:5050 |
 
-## Canlı kurulum (tek komut)
+## Ortam dosyası
 
-Sunucuda proje kökünde:
-
-```bash
-git clone https://github.com/zcaymaz/marcher.git /var/www/marcher
-cd /var/www/marcher
-ls docker-compose.yml compose.yaml .env.example   # dosyalar görünmeli
-docker compose up -d --build
-```
-
-> **"no configuration file provided: not found"** → `docker-compose.yml` sunucuda yok demektir.
-> Genelde sadece `backend/` ve `frontend/` kopyalanmış, proje kökü eksiktir.
-> Çözüm: yukarıdaki gibi tam `git clone` veya `git pull` yapın.
-
-Alternatif (dosya yolunu açıkça verin):
-
-```bash
-cd /var/www/marcher
-docker compose -f docker-compose.yml up -d --build
-# veya eski binary:
-docker-compose -f docker-compose.yml up -d --build
-```
-
-Bu komut otomatik olarak:
-- PostgreSQL’i başlatır
-- Migration çalıştırır
-- Seed (admin, menü, ayarlar) yükler
-- Backend’i `127.0.0.1:5050` üzerinde ayağa kaldırır
-- Frontend’i `127.0.0.1:5055` üzerinde ayağa kaldırır
-
-`.env` dosyası **zorunlu değil** — `.env.example` içindeki production varsayılanları kullanılır.
-
-### CloudPanel reverse proxy
-
-| Domain | Hedef |
-|--------|--------|
-| marchercoffee.com | `http://127.0.0.1:5055` |
-| servis.marchercoffee.com | `http://127.0.0.1:5050` |
-
-### İlk giriş (varsayılan admin)
-
-- E-posta: `admin@marchercoffee.com`
-- Şifre: `Marcher2026!`
-
-### Güvenlik (canlıda mutlaka yapın)
+Tüm ayarlar **proje kökündeki tek `.env`** dosyasında:
 
 ```bash
 cp .env.example .env
-nano .env   # JWT_SECRET, POSTGRES_PASSWORD, ADMIN_PASSWORD değiştirin
-docker compose up -d --build
 ```
 
-`JWT_SECRET` üretmek için: `openssl rand -base64 64`
+`backend/.env` kullanılmaz — silin veya oluşturmayın.
 
 ---
 
@@ -66,16 +21,28 @@ docker compose up -d --build
 
 ```bash
 cp .env.example .env
-# .env içinde GELİŞTİRME yorumlarındaki localhost değerlerini kullanın
 
-docker compose up -d postgres
+docker compose up -d postgres          # sadece DB
 npm install --prefix backend
 npm install --prefix frontend
 npm run db:migrate
 npm run db:seed
-npm run dev:backend    # terminal 1
-npm run dev:frontend   # terminal 2
+npm run dev:backend                    # terminal 1
+npm run dev:frontend                   # terminal 2
 ```
+
+## Canlı (Docker + CloudPanel)
+
+`.env` içinde production değerlerini ayarla (`.env.example` altındaki CANLI bölümüne bak), sonra:
+
+```bash
+npm run docker:up
+docker compose exec backend node dist/prisma/seed.js
+```
+
+CloudPanel reverse proxy:
+- **marchercoffee.com** → `http://127.0.0.1:5055`
+- **servis.marchercoffee.com** → `http://127.0.0.1:5050`
 
 ---
 
@@ -83,8 +50,8 @@ npm run dev:frontend   # terminal 2
 
 ```
 marcher/
-├── .env.example      ← Docker canlı varsayılanları (repoda)
-├── .env              ← isteğe bağlı özelleştirme (gitignore)
+├── .env              ← tek ortam dosyası
+├── .env.example
 ├── backend/
 ├── frontend/
 ├── docker-compose.yml

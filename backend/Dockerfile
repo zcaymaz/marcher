@@ -12,8 +12,6 @@ FROM node:20-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 
-RUN apk add --no-cache wget
-
 COPY package*.json prisma.config.ts ./
 RUN npm ci --omit=dev
 
@@ -21,9 +19,8 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY prisma ./prisma/
-COPY docker-entrypoint.sh ./docker-entrypoint.sh
 
-RUN mkdir -p uploads && chmod +x docker-entrypoint.sh
+RUN mkdir -p uploads
 
 EXPOSE 5050
-ENTRYPOINT ["./docker-entrypoint.sh"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main.js"]
