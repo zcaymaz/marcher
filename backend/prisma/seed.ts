@@ -1,6 +1,15 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
+import { existsSync } from 'fs';
+import { resolve } from 'path';
 import * as bcrypt from 'bcrypt';
 import { createPrismaClient } from '../src/prisma/prisma.factory';
+
+const envCandidates = [
+  resolve(__dirname, '../../../.env'), // dist/prisma/seed.js → kök
+  resolve(__dirname, '../../.env'),    // prisma/seed.ts → kök
+];
+const envPath = envCandidates.find((p) => existsSync(p)) ?? envCandidates[1];
+config({ path: envPath });
 
 const prisma = createPrismaClient();
 

@@ -22,7 +22,7 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "ts-node prisma/seed.ts",
     "db:seed": "ts-node prisma/seed.ts",
-    "db:seed:prod": "node -r dotenv/config dist/prisma/seed.js"
+    "db:seed:prod": "node dist/prisma/seed.js"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

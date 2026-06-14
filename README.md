@@ -5,56 +5,55 @@
 | **Canlı** | https://marchercoffee.com | https://servis.marchercoffee.com |
 | **Dev** | http://localhost:5055 | http://localhost:5050 |
 
-## Canlı deploy (Docker + CloudPanel)
+## Ortam dosyası
 
-### 1. Ortam dosyası
+Tüm ayarlar **proje kökündeki tek `.env`** dosyasında:
 
 ```bash
 cp .env.example .env
-# JWT_SECRET, POSTGRES_PASSWORD, ADMIN_PASSWORD değiştir
 ```
 
-### 2. Docker başlat
-
-```bash
-docker compose up -d --build
-```
-
-Servisler localhost'ta dinler (CloudPanel proxy için):
-- Frontend → `127.0.0.1:5055`
-- Backend → `127.0.0.1:5050`
-
-### 3. CloudPanel site ayarları
-
-**marchercoffee.com** → Reverse Proxy → `http://127.0.0.1:5055`
-
-**servis.marchercoffee.com** → Reverse Proxy → `http://127.0.0.1:5050`
-
-Her iki site için SSL aktif et.
-
-### 4. İlk kurulum (seed)
-
-```bash
-docker compose exec backend node -r dotenv/config dist/prisma/seed.js
-```
+`backend/.env` kullanılmaz — silin veya oluşturmayın.
 
 ---
 
 ## Geliştirme
 
 ```bash
-cp .env.development.example backend/.env
+cp .env.example .env
 
-docker compose up -d postgres   # sadece DB
-cd backend && npm install && npx prisma migrate deploy && npm run db:seed && npm run start:dev
-cd frontend && npm install && npm run dev
+docker compose up -d postgres          # sadece DB
+npm install --prefix backend
+npm install --prefix frontend
+npm run db:migrate
+npm run db:seed
+npm run dev:backend                    # terminal 1
+npm run dev:frontend                   # terminal 2
 ```
+
+## Canlı (Docker + CloudPanel)
+
+`.env` içinde production değerlerini ayarla (`.env.example` altındaki CANLI bölümüne bak), sonra:
+
+```bash
+npm run docker:up
+docker compose exec backend node dist/prisma/seed.js
+```
+
+CloudPanel reverse proxy:
+- **marchercoffee.com** → `http://127.0.0.1:5055`
+- **servis.marchercoffee.com** → `http://127.0.0.1:5050`
+
+---
 
 ## Yapı
 
 ```
 marcher/
-├── backend/     → servis.marchercoffee.com
-├── frontend/    → marchercoffee.com
-└── docker-compose.yml
+├── .env              ← tek ortam dosyası
+├── .env.example
+├── backend/
+├── frontend/
+├── docker-compose.yml
+└── package.json
 ```

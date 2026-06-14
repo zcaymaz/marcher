@@ -1,0 +1,15 @@
+{
+  "name": "marcher",
+  "private": true,
+  "scripts": {
+    "dev:backend": "npm run start:dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build": "npm run build:backend && npm run build:frontend",
+    "db:migrate": "npm run prisma:migrate --prefix backend",
+    "db:seed": "npm run db:seed --prefix backend",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down"
+  }
+}
