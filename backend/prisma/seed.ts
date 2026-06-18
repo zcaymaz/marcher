@@ -2,7 +2,9 @@ import { config } from 'dotenv';
 import { existsSync } from 'fs';
 import { resolve } from 'path';
 import * as bcrypt from 'bcrypt';
+import { Prisma } from '@prisma/client';
 import { createPrismaClient } from '../src/prisma/prisma.factory';
+import { menuItems } from './menu-data';
 
 const envCandidates = [
   resolve(__dirname, '../../../.env'), // dist/prisma/seed.js → kök
@@ -45,6 +47,7 @@ async function main() {
       },
       googleMapsEmbedUrl:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.991!2d2.3522!3d48.8566',
+      addressUrl: 'https://maps.google.com/?q=Marcher+Coffee+Paris',
       socialLinks: {
         instagram: 'https://instagram.com/marchercoffee',
         facebook: 'https://facebook.com/marchercoffee',
@@ -52,95 +55,29 @@ async function main() {
     },
   });
 
-  const menuItems = [
-    {
-      slug: 'espresso',
-      category: 'coffee',
-      name: { tr: 'Espresso', en: 'Espresso', fr: 'Espresso' },
-      description: {
-        tr: 'Yoğun ve dengeli tek shot espresso',
-        en: 'Rich and balanced single shot espresso',
-        fr: 'Espresso corsé et équilibré',
-      },
-      details: {
-        tr: '100% Arabica çekirdeklerinden hazırlanır.',
-        en: 'Prepared from 100% Arabica beans.',
-        fr: 'Préparé à partir de grains 100% Arabica.',
-      },
-      price: 3.5,
-      allergens: [] as string[],
-      isFeatured: true,
-      sortOrder: 1,
-    },
-    {
-      slug: 'latte',
-      category: 'coffee',
-      name: { tr: 'Latte', en: 'Latte', fr: 'Latte' },
-      description: {
-        tr: 'Kremsi süt köpüğü ile espresso',
-        en: 'Espresso with creamy steamed milk',
-        fr: 'Espresso avec lait mousseux crémeux',
-      },
-      price: 4.8,
-      allergens: ['milk'],
-      isFeatured: true,
-      sortOrder: 2,
-    },
-    {
-      slug: 'croissant-beurre',
-      category: 'croissant',
-      name: {
-        tr: 'Tereyağlı Kruvasan',
-        en: 'Butter Croissant',
-        fr: 'Croissant au Beurre',
-      },
-      description: {
-        tr: 'Geleneksel Fransız tereyağlı kruvasan',
-        en: 'Traditional French butter croissant',
-        fr: 'Croissant traditionnel au beurre français',
-      },
-      price: 3.2,
-      allergens: ['gluten', 'milk', 'eggs'],
-      isFeatured: true,
-      sortOrder: 3,
-    },
-    {
-      slug: 'croissant-amande',
-      category: 'croissant',
-      name: {
-        tr: 'Bademli Kruvasan',
-        en: 'Almond Croissant',
-        fr: 'Croissant aux Amandes',
-      },
-      description: {
-        tr: 'Badem kreması ve dilim badem ile',
-        en: 'Filled with almond cream and sliced almonds',
-        fr: "Garni de crème d'amande et amandes effilées",
-      },
-      price: 4.5,
-      allergens: ['gluten', 'milk', 'eggs', 'nuts'],
-      sortOrder: 4,
-    },
-    {
-      slug: 'iced-latte',
-      category: 'cold',
-      name: { tr: 'Soğuk Latte', en: 'Iced Latte', fr: 'Latte Glacé' },
-      description: {
-        tr: 'Buzlu latte, yaz için ideal',
-        en: 'Iced latte, perfect for summer',
-        fr: "Latte glacé, parfait pour l'été",
-      },
-      price: 5.2,
-      allergens: ['milk'],
-      sortOrder: 5,
-    },
-  ];
+  const menuSlugs = menuItems.map((item) => item.slug);
+  await prisma.menuItem.deleteMany({
+    where: { slug: { notIn: menuSlugs } },
+  });
 
   for (const item of menuItems) {
+    const { details, allergens, isFeatured, ...rest } = item;
+    const shared = {
+      ...rest,
+      allergens: allergens ?? [],
+      isFeatured: isFeatured ?? false,
+      images: [] as string[],
+    };
     await prisma.menuItem.upsert({
       where: { slug: item.slug },
-      update: {},
-      create: item,
+      update: {
+        ...shared,
+        details: details ?? Prisma.DbNull,
+      },
+      create: {
+        ...shared,
+        ...(details ? { details } : {}),
+      },
     });
   }
 

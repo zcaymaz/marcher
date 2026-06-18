@@ -7,15 +7,46 @@
     "franchise": "Franchise",
     "about": "Hakkımızda",
     "contact": "İletişim",
-    "admin": "Admin"
+    "admin": "Admin",
+    "menu_cta": "QR Menü"
+  },
+  "announcement": {
+    "default": "Paris konseptli kahve ve kruvasan deneyimi — Marcher Coffee"
+  },
+  "footer": {
+    "tagline": "Geleneksel Fransız reçeteleri, modern dokunuşlar",
+    "corporate": "Kurumsal",
+    "services": "Hizmetler",
+    "categories": "Kategoriler",
+    "contact": "İletişim",
+    "copyright": "COPYRIGHT © {{year}} MARCHER COFFEE. TÜM HAKLARI SAKLIDIR."
   },
   "home": {
+    "badge": "PARIS",
+    "brand_name": "Marcher Coffee Paris",
+    "brand_tagline": "Geleneksel Fransız Reçeteleri, Modern Dokunuşlar",
+    "hero_title_line1": "MARCHER",
+    "hero_title_line2": "COFFEE",
+    "hero_title_line3": "PARIS",
+    "hero_title_full": "Marcher Coffee Paris",
+    "hero_subtitle_carousel": "Geleneksel Fransız reçeteleri, modern dokunuşlar",
+    "hero_carousel_label": "Kampanya slaytları",
+    "carousel_prev": "Önceki slayt",
+    "carousel_next": "Sonraki slayt",
+    "carousel_slide": "Slayt",
     "hero_cta": "Menüyü Keşfet",
-    "featured": "Öne Çıkanlar",
-    "blog_title": "Güncel Yazılar",
+    "hero_secondary_cta": "Hikayemiz",
+    "hero_image_alt": "Marcher Coffee Paris bardak görseli",
+    "seo_description": "Marcher Coffee Paris — Geleneksel Fransız reçeteleri, modern dokunuşlar. Kruvasan ve özel kahve deneyimi.",
+    "featured": "Öne Çıkan Ürünlerimiz",
+    "featured_overline": "Menü",
+    "blog_title": "Blog",
+    "blog_overline": "Blog",
     "reviews_title": "Google Yorumları",
+    "reviews_overline": "Yorumlar",
     "references_title": "Referanslarımız",
-    "view_all": "Tümünü Gör"
+    "references_overline": "Ortaklar",
+    "view_all": "Tümünü Görüntüle"
   },
   "menu": {
     "title": "QR Menü",
@@ -72,6 +103,10 @@
     "search": "Ara"
   },
   "admin": {
+    "nav_general": "Genel",
+    "nav_content": "İçerik",
+    "nav_marketing": "Pazarlama",
+    "nav_system": "Sistem",
     "dashboard": "Dashboard",
     "menu": "Menü",
     "blog": "Blog",

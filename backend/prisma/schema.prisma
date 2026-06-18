@@ -135,6 +135,7 @@ model SiteSettings {
   phone              String?
   email              String?
   address            Json?
+  addressUrl         String?
   googleMapsEmbedUrl String?
   googlePlaceId      String?
   socialLinks        Json?

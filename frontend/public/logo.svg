@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 56" fill="none" role="img" aria-label="Marcher Coffee Paris">
+  <text
+    x="0"
+    y="30"
+    font-family="Barlow, Arial, Helvetica, sans-serif"
+    font-size="30"
+    font-weight="800"
+    letter-spacing="2"
+    fill="#1C252E"
+  >MARCHER</text>
+  <circle cx="142" cy="22" r="5.5" fill="#8B5E3C"/>
+  <text
+    x="154"
+    y="30"
+    font-family="Barlow, Arial, Helvetica, sans-serif"
+    font-size="30"
+    font-weight="800"
+    letter-spacing="2"
+    fill="#1C252E"
+  >COFFEE</text>
+  <text
+    x="0"
+    y="50"
+    font-family="Barlow, Arial, Helvetica, sans-serif"
+    font-size="12"
+    font-weight="700"
+    letter-spacing="6"
+    fill="#8B5E3C"
+  >PARIS</text>
+</svg>

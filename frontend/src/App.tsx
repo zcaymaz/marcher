@@ -14,7 +14,6 @@ import BlogDetail from './pages/BlogDetail';
 import References from './pages/References';
 import Franchise from './pages/Franchise';
 import About from './pages/About';
-import Contact from './pages/Contact';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -48,7 +47,6 @@ function App() {
                 <Route path="/references" element={<References />} />
                 <Route path="/franchise" element={<Franchise />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
               </Route>
 
               <Route path="/admin/login" element={<AdminLogin />} />

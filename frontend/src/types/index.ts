@@ -95,6 +95,7 @@ export interface SiteSettings {
   phone?: string;
   email?: string;
   address?: LocalizedString;
+  addressUrl?: string;
   googleMapsEmbedUrl?: string;
   googlePlaceId?: string;
   socialLinks?: Record<string, string>;

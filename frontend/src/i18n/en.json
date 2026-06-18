@@ -7,14 +7,45 @@
     "franchise": "Franchise",
     "about": "About",
     "contact": "Contact",
-    "admin": "Admin"
+    "admin": "Admin",
+    "menu_cta": "QR Menu"
+  },
+  "announcement": {
+    "default": "Paris concept coffee and croissant experience — Marcher Coffee"
+  },
+  "footer": {
+    "tagline": "Traditional French recipes, modern touches",
+    "corporate": "Corporate",
+    "services": "Services",
+    "categories": "Categories",
+    "contact": "Contact",
+    "copyright": "COPYRIGHT © {{year}} MARCHER COFFEE. ALL RIGHTS RESERVED."
   },
   "home": {
+    "badge": "PARIS",
+    "brand_name": "Marcher Coffee Paris",
+    "brand_tagline": "Traditional French Recipes, Modern Touches",
+    "hero_title_line1": "MARCHER",
+    "hero_title_line2": "COFFEE",
+    "hero_title_line3": "PARIS",
+    "hero_title_full": "Marcher Coffee Paris",
+    "hero_subtitle_carousel": "Traditional French recipes, modern touches",
+    "hero_carousel_label": "Campaign slides",
+    "carousel_prev": "Previous slide",
+    "carousel_next": "Next slide",
+    "carousel_slide": "Slide",
     "hero_cta": "Explore Menu",
-    "featured": "Featured",
-    "blog_title": "Latest Posts",
+    "hero_secondary_cta": "Our Story",
+    "hero_image_alt": "Marcher Coffee Paris cup visual",
+    "seo_description": "Marcher Coffee Paris — Traditional French recipes with modern touches. Croissant and specialty coffee experience.",
+    "featured": "Our Featured Products",
+    "featured_overline": "Menu",
+    "blog_title": "Blog",
+    "blog_overline": "Blog",
     "reviews_title": "Google Reviews",
+    "reviews_overline": "Reviews",
     "references_title": "Our References",
+    "references_overline": "Partners",
     "view_all": "View All"
   },
   "menu": {
@@ -72,6 +103,10 @@
     "search": "Search"
   },
   "admin": {
+    "nav_general": "General",
+    "nav_content": "Content",
+    "nav_marketing": "Marketing",
+    "nav_system": "System",
     "dashboard": "Dashboard",
     "menu": "Menu",
     "blog": "Blog",

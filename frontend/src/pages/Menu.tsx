@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api, { getImageUrl } from '../utils/api';
-import { getLocalized, MenuItem } from '../types';
+import { formatPrice } from '../utils/formatPrice';
+import { getLocalized, MenuItem, Campaign } from '../types';
 import SEO from '../components/common/SEO';
+import BrandLogo from '../components/common/BrandLogo';
 
 const categories = ['all', 'coffee', 'croissant', 'pastry', 'food', 'cold'];
 
@@ -11,13 +13,19 @@ export default function Menu() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const [items, setItems] = useState<MenuItem[]>([]);
+  const [banner, setBanner] = useState<Campaign | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api
-      .get('/menu?available=true')
-      .then(({ data }) => setItems(data))
+    Promise.all([
+      api.get('/menu?available=true'),
+      api.get('/campaigns/active?placement=MENU_BANNER'),
+    ])
+      .then(([menuRes, bannerRes]) => {
+        setItems(menuRes.data);
+        setBanner(bannerRes.data[0] ?? null);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -31,9 +39,23 @@ export default function Menu() {
       <SEO title={t('menu.title')} />
       <div className="menu-page">
         <div className="menu-header">
-          <h1>{t('menu.title')}</h1>
+          <BrandLogo variant="menu" to="/" />
           <p className="menu-subtitle">Marcher Coffee Paris</p>
         </div>
+
+        {banner && (
+          <div className="menu-campaign-banner">
+            {banner.image && (
+              <img src={getImageUrl(banner.image)} alt="" className="menu-campaign-banner__image" />
+            )}
+            <div className="menu-campaign-banner__content">
+              <strong>{getLocalized(banner.title, lang)}</strong>
+              {banner.subtitle && (
+                <p>{getLocalized(banner.subtitle, lang)}</p>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="category-chips">
           {categories.map((cat) => (
@@ -65,7 +87,7 @@ export default function Menu() {
                     </span>
                   )}
                 </div>
-                <span className="menu-item-price">{item.price.toFixed(2)} €</span>
+                <span className="menu-item-price">{formatPrice(item.price)}</span>
               </Link>
             ))}
           </div>

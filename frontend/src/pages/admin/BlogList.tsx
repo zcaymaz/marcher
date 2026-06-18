@@ -2,12 +2,22 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../utils/api';
 import { BlogPost, getLocalized } from '../../types';
+import AdminPageHeader from '../../components/admin/AdminPageHeader';
+import AdminCard from '../../components/admin/AdminCard';
+import AdminBadge from '../../components/admin/AdminBadge';
+import AdminTableActions from '../../components/admin/AdminTableActions';
+import AdminEmptyState from '../../components/admin/AdminEmptyState';
+import AdminLoading from '../../components/admin/AdminLoading';
 
 export default function BlogList() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('/blog').then(({ data }) => setPosts(data));
+    api.get('/blog').then(({ data }) => {
+      setPosts(data);
+      setLoading(false);
+    });
   }, []);
 
   const handleDelete = async (slug: string) => {
@@ -16,30 +26,61 @@ export default function BlogList() {
     setPosts(posts.filter((p) => p.slug !== slug));
   };
 
+  if (loading) return <AdminLoading />;
+
   return (
     <div>
-      <div className="admin-header">
-        <h1>Blog Yönetimi</h1>
-        <Link to="/admin/blog/new" className="btn btn-primary">Yeni Yazı</Link>
-      </div>
-      <table className="admin-table">
-        <thead>
-          <tr><th>Başlık</th><th>Kategori</th><th>Tarih</th><th>İşlemler</th></tr>
-        </thead>
-        <tbody>
-          {posts.map((post) => (
-            <tr key={post.id}>
-              <td>{getLocalized(post.title, 'tr')}</td>
-              <td>{post.category}</td>
-              <td>{new Date(post.date).toLocaleDateString('tr')}</td>
-              <td className="actions">
-                <Link to={`/admin/blog/edit/${post.slug}`}>Düzenle</Link>
-                <button onClick={() => handleDelete(post.slug)}>Sil</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <AdminPageHeader
+        title="Blog Yönetimi"
+        subtitle={`${posts.length} yazı`}
+        action={
+          <Link to="/admin/blog/new" className="btn btn-primary">
+            <i className="bi bi-plus-lg" /> Yeni Yazı
+          </Link>
+        }
+      />
+
+      <AdminCard noPadding>
+        {posts.length === 0 ? (
+          <AdminEmptyState
+            icon="bi-journal-text"
+            title="Henüz blog yazısı yok"
+            action={
+              <Link to="/admin/blog/new" className="btn btn-primary btn-sm">
+                Yeni Yazı
+              </Link>
+            }
+          />
+        ) : (
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Başlık</th>
+                  <th>Kategori</th>
+                  <th>Tarih</th>
+                  <th style={{ textAlign: 'right' }}>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody>
+                {posts.map((post) => (
+                  <tr key={post.id}>
+                    <td className="table-cell-title">{getLocalized(post.title, 'tr')}</td>
+                    <td><AdminBadge variant="default">{post.category}</AdminBadge></td>
+                    <td className="table-cell-muted">{new Date(post.date).toLocaleDateString('tr')}</td>
+                    <td>
+                      <AdminTableActions
+                        editTo={`/admin/blog/edit/${post.slug}`}
+                        onDelete={() => handleDelete(post.slug)}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </AdminCard>
     </div>
   );
 }

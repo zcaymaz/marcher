@@ -13,6 +13,8 @@ import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
 
+const MAX_UPLOAD_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
 const storage = diskStorage({
   destination: './uploads',
   filename: (_req, file, cb) => {
@@ -39,7 +41,7 @@ const imageFilter = (
 export class UploadController {
   @Post()
   @UseInterceptors(
-    FileInterceptor('image', { storage, fileFilter: imageFilter, limits: { fileSize: 5 * 1024 * 1024 } }),
+    FileInterceptor('image', { storage, fileFilter: imageFilter, limits: { fileSize: MAX_UPLOAD_FILE_SIZE } }),
   )
   uploadSingle(@UploadedFile() file: Express.Multer.File) {
     return { url: `/uploads/${file.filename}` };
@@ -47,7 +49,7 @@ export class UploadController {
 
   @Post('multiple')
   @UseInterceptors(
-    FilesInterceptor('images', 10, { storage, fileFilter: imageFilter, limits: { fileSize: 5 * 1024 * 1024 } }),
+    FilesInterceptor('images', 10, { storage, fileFilter: imageFilter, limits: { fileSize: MAX_UPLOAD_FILE_SIZE } }),
   )
   uploadMultiple(@UploadedFiles() files: Express.Multer.File[]) {
     return { urls: files.map((f) => `/uploads/${f.filename}`) };

@@ -32,11 +32,13 @@ export class SiteSettingsService {
 
   async update(dto: UpdateSiteSettingsDto) {
     await this.get();
+    const { address, socialLinks, ...rest } = dto;
     return this.prisma.siteSettings.update({
       where: { id: 'default' },
       data: {
-        ...dto,
-        address: dto.address ? toJson(dto.address) : undefined,
+        ...rest,
+        ...(address ? { address: toJson(address) } : {}),
+        ...(socialLinks !== undefined ? { socialLinks } : {}),
       },
     });
   }

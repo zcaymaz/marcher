@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api, { getImageUrl } from '../utils/api';
+import { formatPrice } from '../utils/formatPrice';
 import { getLocalized, MenuItem } from '../types';
 import SEO from '../components/common/SEO';
 
@@ -37,9 +38,9 @@ export default function MenuDetail() {
             <p className="description">{getLocalized(item.description, lang)}</p>
 
             <div className="price-block">
-              <span className="price">{item.price.toFixed(2)} €</span>
+              <span className="price">{formatPrice(item.price)}</span>
               {item.oldPrice && (
-                <span className="old-price">{item.oldPrice.toFixed(2)} €</span>
+                <span className="old-price">{formatPrice(item.oldPrice)}</span>
               )}
             </div>
 

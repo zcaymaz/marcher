@@ -7,14 +7,45 @@
     "franchise": "Franchise",
     "about": "À Propos",
     "contact": "Contact",
-    "admin": "Admin"
+    "admin": "Admin",
+    "menu_cta": "Menu QR"
+  },
+  "announcement": {
+    "default": "Expérience café et croissant au concept parisien — Marcher Coffee"
+  },
+  "footer": {
+    "tagline": "Recettes françaises traditionnelles, touches modernes",
+    "corporate": "Entreprise",
+    "services": "Services",
+    "categories": "Catégories",
+    "contact": "Contact",
+    "copyright": "COPYRIGHT © {{year}} MARCHER COFFEE. TOUS DROITS RÉSERVÉS."
   },
   "home": {
+    "badge": "PARIS",
+    "brand_name": "Marcher Coffee Paris",
+    "brand_tagline": "Recettes Françaises Traditionnelles, Touches Modernes",
+    "hero_title_line1": "MARCHER",
+    "hero_title_line2": "COFFEE",
+    "hero_title_line3": "PARIS",
+    "hero_title_full": "Marcher Coffee Paris",
+    "hero_subtitle_carousel": "Recettes françaises traditionnelles, touches modernes",
+    "hero_carousel_label": "Diapositives de campagne",
+    "carousel_prev": "Diapositive précédente",
+    "carousel_next": "Diapositive suivante",
+    "carousel_slide": "Diapositive",
     "hero_cta": "Découvrir le Menu",
-    "featured": "À la Une",
-    "blog_title": "Articles Récents",
+    "hero_secondary_cta": "Notre Histoire",
+    "hero_image_alt": "Visuel de la tasse Marcher Coffee Paris",
+    "seo_description": "Marcher Coffee Paris — Recettes françaises traditionnelles aux touches modernes. Expérience croissant et café de spécialité.",
+    "featured": "Nos Produits à la Une",
+    "featured_overline": "Menu",
+    "blog_title": "Blog",
+    "blog_overline": "Blog",
     "reviews_title": "Avis Google",
+    "reviews_overline": "Avis",
     "references_title": "Nos Références",
+    "references_overline": "Partenaires",
     "view_all": "Voir Tout"
   },
   "menu": {
@@ -72,6 +103,10 @@
     "search": "Rechercher"
   },
   "admin": {
+    "nav_general": "Général",
+    "nav_content": "Contenu",
+    "nav_marketing": "Marketing",
+    "nav_system": "Système",
     "dashboard": "Tableau de Bord",
     "menu": "Menu",
     "blog": "Blog",
