@@ -10,5 +10,14 @@ backend/uploads/*
 !backend/uploads/.gitkeep
 backend/generated/
 
+# TypeScript build artifacts (should not be committed)
+backend/prisma.config.js
+backend/prisma.config.js.map
+backend/prisma.config.d.ts
+backend/prisma/*.js
+backend/prisma/*.js.map
+backend/prisma/*.d.ts
+backend/tsconfig.build.tsbuildinfo
+
 # Referans proje (repoya dahil etme)
 aura/

@@ -1,0 +1,14 @@
+node_modules
+dist
+uploads
+*.log
+.env
+.env.*
+coverage
+**/*.js.map
+tsconfig.build.tsbuildinfo
+prisma.config.js
+prisma.config.d.ts
+prisma/*.js
+prisma/*.d.ts
+!prisma/migrations/**
