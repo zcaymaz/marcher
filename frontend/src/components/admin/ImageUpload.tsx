@@ -1,3 +1,5 @@
+import { getImageUrl } from '../../utils/api';
+
 interface Props {
   value?: string;
   uploading?: boolean;
@@ -39,7 +41,7 @@ export default function ImageUpload({
       </label>
       {value && (
         <div className="admin-image-upload__preview">
-          <img src={value} alt="" />
+          <img src={getImageUrl(value)} alt="" />
         </div>
       )}
     </div>

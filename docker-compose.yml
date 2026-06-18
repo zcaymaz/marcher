@@ -41,6 +41,8 @@ services:
         VITE_API_URL: ${VITE_API_URL:-https://servis.marchercoffee.com/api}
         VITE_SITE_URL: ${VITE_SITE_URL:-https://marchercoffee.com}
     restart: unless-stopped
+    depends_on:
+      - backend
     ports:
       - "127.0.0.1:5055:80"
     networks:
