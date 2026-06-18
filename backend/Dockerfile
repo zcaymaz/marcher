@@ -1,5 +1,7 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
+# package-lock.json is generated with npm 11; node:20 ships npm 10
+RUN npm install -g npm@11
 COPY package*.json prisma.config.ts ./
 COPY prisma ./prisma/
 RUN npm ci
@@ -11,6 +13,7 @@ RUN npx tsc prisma/seed.ts --outDir dist/prisma --esModuleInterop --skipLibCheck
 FROM node:20-alpine
 WORKDIR /app
 ENV NODE_ENV=production
+RUN npm install -g npm@11
 
 COPY package*.json prisma.config.ts ./
 RUN npm ci --omit=dev
