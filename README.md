@@ -41,8 +41,8 @@ docker compose exec backend node dist/prisma/seed.js
 ```
 
 CloudPanel reverse proxy:
-- **marchercoffee.com** → `http://127.0.0.1:5055`
-- **servis.marchercoffee.com** → `http://127.0.0.1:5050`
+- **marchercoffee.com** → `http://127.0.0.1:5055` (frontend nginx; `/api` ve `/uploads` backend'e proxy edilir)
+- **servis.marchercoffee.com** → `http://127.0.0.1:5050` (opsiyonel, doğrudan API)
 
 ---
 
