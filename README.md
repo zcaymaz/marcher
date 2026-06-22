@@ -41,8 +41,10 @@ docker compose exec backend node dist/prisma/seed.js
 ```
 
 CloudPanel reverse proxy:
-- **marchercoffee.com** → `http://127.0.0.1:5055` (frontend nginx; `/api` ve `/uploads` backend'e proxy edilir)
+- **marchercoffee.com** ve **www.marchercoffee.com** → `http://127.0.0.1:5055` (frontend nginx; `www` otomatik olarak apex'e yönlendirilir; `/api` ve `/uploads` backend'e proxy edilir)
 - **servis.marchercoffee.com** → `http://127.0.0.1:5050` (opsiyonel, doğrudan API)
+
+`CORS_ORIGIN` içinde hem apex hem `www` olmalı (veya `VITE_API_URL=/api` ile aynı origin üzerinden proxy kullanın).
 
 ---
 
